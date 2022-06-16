@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- goto line 97 and be sure to edit your information -->
+<html>
+
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css" />
+
+  <style>
+    body {
+      background-color: rgba(0, 0, 0, 255);
+      font-family: 'vcr_osd_monoregular', monospace;
+      font-size: 13px;
+      color: #AFAFAF;
+    }
+
+    @font-face {
+      font-family: 'vcr_osd_monoregular';
+      src: url(FONT/vcr_osd_mono_1.001-webfont.woff2) format('woff2'),
+        url(FONT/vcr_osd_mono_1.001-webfont.woff) format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .form-control {
+      background-color: rgba(32, 32, 32, 255)
+    }
+
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+      background-color: rgba(32, 32, 32, 255)
+
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>AXON Bodycam dotRP Overlay</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>DotRP Cam Overlay Configurator</h1>
+
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div><label for="player" class="col-sm-2 control-label">player: </label></div>
+        <div class="col-sm-10"><input class="form-control" type="text" name="player" id="player" placeholder="player name" /></div>
+      </div>
+      <div class="form-group">
+        <div><label for="player" class="col-sm-2 control-label">callsign: </label></div>
+        <div class="col-sm-10"><input class="form-control" type="text" name="callsign" id="callsign" placeholder="callsign" /></div>
+      </div>
+      <div class="form-group">
+        <div><label for="player" class="col-sm-2 control-label">agency: </label></div>
+        <div class="col-sm-10"><input class="form-control" type="text" name="agency" id="agency" placeholder="agency" /></div>
+      </div>
+      <div style="height: 2em"></div>
+
+      <div class="form-group">
+        <div><label for="url" class="col-sm-2 control-label">url: </label></div>
+        <div class="col-sm-10"><input class="form-control" type="text" name="url" id="url" readonly="true" /></div>
+      </div>
+    </form>
+
+  </div>
+</body>
+
+</html>
