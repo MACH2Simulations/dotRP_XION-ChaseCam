@@ -1,57 +1,40 @@
-# XION-ChaseCam
-This is a free-to-use HTML/javascript based overlay for roleplay streamers.  Basically it mimics the overlay of the AXON bodycam, but since most folks play in 3rd person, it's a ChaseCam.  I've included a logo, and the html file.  The html file has the css, html, and javascript all in one file for ease of editing.  Goto line 81 of the html file to change your information, and be sure to read the readme.txt file for further information.
+# dotRP XION-ChaseCam
 
-# Screenshot(s)
+This is based on https://github.com/zhivotnoya/XION-ChaseCam - thanks to them!
 
-![Ofc Hightower](https://i.imgur.com/Bzzyxpw.png)
+This is a free-to-use HTML/javascript based overlay for roleplay streamers.  It mimics the overlay of the AXON bodycam, but since most folks play in 3rd person, it's a ChaseCam.
 
-![Deputy Barnes](https://i.imgur.com/WyYo6jt.png)
+## Screenshot(s)
 
+> TODO
 
+## How to use
 
-# How to use:
+### Source from the Web
 
-1) create a directory for the script to reside
+> TODO github pages hosting
 
-2) put files (including this one) into that directory
+### Local Download
 
-3) open top-right.html, goto line 81, and change the info for "player", "agency", "callsign" making sure to preserve the
+1. Download this repository (Code -> Download ZIP or click on the Releases on the Right)
+2. Unzip somewhere you wish to store this (near OBS)
+3. Add a "Browser Source" layer and point at the `top-right.html` file
+4. See the next section on setting your parameters
+5. Activate the layer
 
-   formatting and any quotes.  If you need a quote or other punctuation mark in your name/agency/callsign please refer to
+## How to configure your parameters
 
-   this: https://www.toptal.com/designers/htmlarrows/punctuation/   and utilize the code labelled as "HTML ENTITY".
+If you wish to edit the parameters for a local download, or do not wish to use the configurator above, you can set the parameters by hand
 
-4) load into OBS (or other software) as a "BROWSER SOURCE" the file with the .html extension
+After the `top-right.html` filename in the path in your browser source, append:
 
-5) activate the layer and profit!
+```text
+?player=YOURPLAYERNAME&agency=YOURAGENCYNAME&callsign=YOURCALLSIGN&tz=America/New_York
+```
 
-# Change Image
+The parameters here:
 
-1) make sure your image is saved as a png to preserve transparency (if any) other wise shouldn't matter.
-
-2) Navigate to: https://www.base64-image.de/  and drag/drop your image to have it converted to base64
-
-3) Copy the base64 code by clicking </> show code, and copy the code for img to your clipboard.
-
-4) using a text editor, replace the long string of code in the body of the html file with your string of code.  Be sure to
-   not remove the quotes.
-   
-5) Save the file and enjoy!
-
-# People/Communities I've found that use it religiously!
-
-These fine folks use it all the time and I thank you from the bottom of my heart!
-(As I find them, I'll add them here)
-
-SonoranCAD (https://info.sonorancad.com/integration-plugins/twitch-overlay-and-bot#bodycam-overlay ) offers a modified version that puts in your location information.
-
-DirtRoadDeputy (https://www.twitch.tv/dirtroaddeputy)
-
-(more to come, I promise.  If you use it, and would like to be mentioned, drop me a message (please no spam). At the very least, your usage will be immortalized here. :) )
-
-# Version History:
-v3: double beep added by user @spaz926 .  Thanks for the addition!
-
-v2: this one
-
-v1: initially was 3 separate files.
+* **player=** -- the player name (consider using an abbreviation)
+* **agency=** -- the agency you are showing (eg Los Santos PD)
+* **callsign=** -- your player's callsign abbreviation (3 characters typically)
+* **tz=** -- timezone you wish to show in the box. America/New_York (Eastern time) is typical. see [the list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). It will try to guess your local one if you do not specify.
