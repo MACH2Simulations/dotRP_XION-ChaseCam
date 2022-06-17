@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js" integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"
     type="text/css" />
@@ -24,12 +25,35 @@
     }
 
     .form-control {
+      background-color: rgb(32, 32, 32);
+      color: #CCC;
+    }
+
+    .form-control[disabled],
+    .form-control[readonly],
+    fieldset[disabled] .form-control {
       background-color: rgb(32, 32, 32)
     }
 
-    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-      background-color: rgb(32, 32, 32)
+    #config {
+      margin-top: 5em;
+      background-color: #333;
+      border-color: #888;
+    }
 
+    #config>.panel-heading {
+      color: #333;
+      background-color: #aaa;
+      border-color: #888;
+    }
+
+    #preview {
+      width: 100%;
+    }
+
+    #preview>iframe {
+      border: none;
+      width: 100%;
     }
   </style>
   <meta charset="utf-8">
@@ -38,31 +62,72 @@
 </head>
 
 <body>
+  <div id="preview">
+    <iframe src="top-right.html?player=play&callsign=call&agency=agen&tz=America%2FNew_York"></iframe>
+  </div>
   <div class="container">
-    <h1>DotRP Cam Overlay Configurator</h1>
+    <div class="panel panel-default" id="config">
+      <div class="panel-heading">
+        <h1 class="panel-title">DotRP Cam Overlay Configurator</h1>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div><label for="player" class="col-sm-2 control-label">player: </label></div>
+            <div class="col-sm-8"><input class="form-control change-track" type="text" name="player" id="player"
+                placeholder="player name" /></div>
+          </div>
+          <div class="form-group">
+            <div><label for="player" class="col-sm-2 control-label">callsign: </label></div>
+            <div class="col-sm-8"><input class="form-control change-track" type="text" name="callsign" id="callsign"
+                placeholder="callsign" /></div>
+          </div>
+          <div class="form-group">
+            <div><label for="player" class="col-sm-2 control-label">agency: </label></div>
+            <div class="col-sm-8"><input class="form-control change-track" type="text" name="agency" id="agency"
+                placeholder="agency" /></div>
+          </div>
+          <div style="height: 2em"></div>
 
-    <form class="form-horizontal">
-      <div class="form-group">
-        <div><label for="player" class="col-sm-2 control-label">player: </label></div>
-        <div class="col-sm-10"><input class="form-control" type="text" name="player" id="player" placeholder="player name" /></div>
+          <div class="form-group">
+            <div><label for="url" class="col-sm-2 control-label">url (click me): </label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" name="url" id="url" readonly="true"
+                value="https://axon.dotroleplay.com/top-right.html?player=player&callsign=call&agency=agency&tz=America%2FNew_York">
+            </div>
+            <div class="col-sm-2"></div><span class="label label-info" style="display: none;" id="copied">Copied!</span>
+          </div>
       </div>
-      <div class="form-group">
-        <div><label for="player" class="col-sm-2 control-label">callsign: </label></div>
-        <div class="col-sm-10"><input class="form-control" type="text" name="callsign" id="callsign" placeholder="callsign" /></div>
-      </div>
-      <div class="form-group">
-        <div><label for="player" class="col-sm-2 control-label">agency: </label></div>
-        <div class="col-sm-10"><input class="form-control" type="text" name="agency" id="agency" placeholder="agency" /></div>
-      </div>
-      <div style="height: 2em"></div>
-
-      <div class="form-group">
-        <div><label for="url" class="col-sm-2 control-label">url: </label></div>
-        <div class="col-sm-10"><input class="form-control" type="text" name="url" id="url" readonly="true" /></div>
-      </div>
-    </form>
-
+      </form>
+    </div>
   </div>
 </body>
+
+<script>
+  $(".change-track").keyup(updateUrl);
+  $(".change-track").keydown(updateUrl);
+  $("#url").click(function () {
+    $("#url").select();
+    document.execCommand("copy");
+    $("#copied").fadeIn("fast");
+    setTimeout(function () {
+      $("#copied").fadeOut("slow");
+    }, 5000);
+  })
+
+  function updateUrl() {
+    const values = {
+      player: $("#player").val(),
+      callsign: $("#callsign").val(),
+      agency: $("#agency").val(),
+      tz: "America/New_York" //default
+    };
+
+    const url = "https://axon.dotroleplay.com/top-right.html?" + $.param(values);
+    $("#url").val(url);
+    //update iframe
+    $("#preview>iframe").attr('src', url);
+    return;
+  }
+</script>
 
 </html>
