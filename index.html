@@ -10,10 +10,13 @@
 
   <style>
     body {
-      background-color: rgb(0, 0, 0);
       font-family: 'vcr_osd_monoregular', monospace;
       font-size: 13px;
       color: #AFAFAF;
+      background: rgb(0, 0, 0, 0.5) url("IMAGES/background.png") no-repeat fixed;
+      background-blend-mode: darken;
+      background-size: cover;
+      background-position: center;
     }
 
     @font-face {
@@ -35,13 +38,16 @@
       background-color: rgb(32, 32, 32)
     }
 
-    #config {
+    .panel {
       margin-top: 5em;
+    }
+
+    .panel-default {
       background-color: #333;
       border-color: #888;
     }
 
-    #config>.panel-heading {
+    .panel-default>.panel-heading {
       color: #333;
       background-color: #aaa;
       border-color: #888;
@@ -63,7 +69,7 @@
 
 <body>
   <div id="preview">
-    <iframe src="top-right.html?player=play&callsign=call&agency=agen&tz=America%2FNew_York"></iframe>
+    <iframe src="top-right.html?player=player name&callsign=call&agency=unknown agency&tz=America%2FNew_York"></iframe>
   </div>
   <div class="container">
     <div class="panel panel-default" id="config">
@@ -74,18 +80,26 @@
         <form class="form-horizontal">
           <div class="form-group">
             <div><label for="player" class="col-sm-2 control-label">player: </label></div>
-            <div class="col-sm-8"><input class="form-control change-track" type="text" name="player" id="player"
-                placeholder="player name" /></div>
+            <div class="col-sm-8">
+              <input class="form-control change-track" type="text" name="player" id="player" placeholder="player name"
+                maxlength="20" />
+            </div>
           </div>
           <div class="form-group">
             <div><label for="player" class="col-sm-2 control-label">callsign: </label></div>
-            <div class="col-sm-8"><input class="form-control change-track" type="text" name="callsign" id="callsign"
-                placeholder="callsign" /></div>
+            <div class="col-sm-8">
+              <input class="form-control change-track" type="text" name="callsign" id="callsign" placeholder="callsign"
+                maxlength="4" />
+            </div>
           </div>
           <div class="form-group">
             <div><label for="player" class="col-sm-2 control-label">agency: </label></div>
-            <div class="col-sm-8"><input class="form-control change-track" type="text" name="agency" id="agency"
-                placeholder="agency" /></div>
+            <div class="col-sm-8">
+              <select class="form-control change-track" name="agency" id="agency">
+                <option>LOS SANTOS POLICE DEPT</option>
+                <option>LOS SANTOS FIRE RESCUE</option>
+              </select>
+            </div>
           </div>
           <div style="height: 2em"></div>
 
@@ -99,12 +113,20 @@
       </div>
       </form>
     </div>
+    <div class="panel panel-default" id="howto">
+      <div class="panel-heading">
+        <h1 class="panel-title">How To Use</h1>
+      </div>
+      <div class="panel-body">
+      </div>
+    </div>
   </div>
 </body>
 
 <script>
   $(".change-track").keyup(updateUrl);
   $(".change-track").keydown(updateUrl);
+  $(".change-track").change(updateUrl);
   $("#url").click(function () {
     $("#url").select();
     document.execCommand("copy");
