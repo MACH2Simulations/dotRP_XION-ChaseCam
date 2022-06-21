@@ -123,9 +123,9 @@
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const player = urlParams.get('player').toUpperCase() || "";
-    const agency = urlParams.get('agency').toUpperCase() || "";
-    const callsign = urlParams.get('callsign').toUpperCase() || "";
+    const player = (urlParams.get('player') || "UNKNOWN").toUpperCase();
+    const agency = (urlParams.get('agency') || "UNKNOWN AGENCY").toUpperCase();
+    const callsign = (urlParams.get('callsign') || "???").toUpperCase();
     const tz = urlParams.get('tz') || moment.tz.guess();
     const font = urlParams.get('font') || 'ibmplex';
 
@@ -137,7 +137,7 @@
         $('agency', agency);
         $('callsign', callsign);
 
-        clock();
+        animate = setInterval(clock, 1000);
     };
 
     function clock() {
@@ -152,8 +152,6 @@
 
         $('dt', dateStr.toUpperCase());
         $('ts', timeStr.toUpperCase());
-
-        animate = setTimeout(clock, 1000);
     };
 
     function $(id, val) {
