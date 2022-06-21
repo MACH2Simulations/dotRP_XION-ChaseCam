@@ -11,15 +11,44 @@
         type="text/css" />
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"
         type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=PT+Mono&family=Roboto+Mono:wght@400;500;600&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
             background-color: rgba(0, 0, 0, 0);
             margin: 0px auto;
             overflow: hidden;
-            font-family: 'vcr_osd_monoregular', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 13px;
             color: #AFAFAF;
+        }
+
+        .bodyfont-ibmplex {
+            font-family: "IBM Plex Mono";
+        }
+
+        .bodyfont-roboto {
+            font-family: "Roboto Mono";
+        }
+
+        .bodyfont-courier {
+            font-family: "Courier Prime";
+        }
+
+        .bodyfont-pt {
+            font-family: "PT Mono";
+        }
+
+        .bodyfont-sharetech {
+            font-family: "Share Tech Mono";
+        }
+
+        .bodyfont-vcr {
+            font-family: "vcr_osd_monoregular";
         }
 
         .Blink {
@@ -56,8 +85,8 @@
             text-align: right;
             /* edit the fourth value of the next line to change opacity */
             /* 0.0 is clear, 1.0 is completely opaque                   */
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 5px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.5em;
             margin: 10px;
             -moz-border-radius: 10px;
             -webkit-border-radius: 10px;
@@ -86,8 +115,8 @@
             <span id="player"></span>
             [<span id="callsign"></span>]&nbsp;&nbsp;<br />
             <span id="agency"></span>&nbsp;&nbsp;<br />
-            <span style="padding:0px;margin:0px;" id="dt"></span>&nbsp;
-            <span style="padding:0px;margin:0px;" id="ts"></span>&nbsp;&nbsp;
+            <span id="dt"></span>&nbsp;
+            <span id="ts"></span>&nbsp;&nbsp;
         </div>
     </div>
 </body>
@@ -98,10 +127,12 @@
     const agency = urlParams.get('agency').toUpperCase() || "";
     const callsign = urlParams.get('callsign').toUpperCase() || "";
     const tz = urlParams.get('tz') || moment.tz.guess();
+    const font = urlParams.get('font') || 'ibmplex';
 
     var animate;
 
     function init() {
+        document.body.className = 'bodyfont-' + font;
         $('player', player);
         $('agency', agency);
         $('callsign', callsign);
@@ -129,7 +160,7 @@
         document.getElementById(id).innerHTML = val;
     };
 
-    window.onload = init;
+    document.addEventListener("DOMContentLoaded", init);
 </script>
 
 </html>

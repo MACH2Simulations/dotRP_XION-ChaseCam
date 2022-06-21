@@ -7,10 +7,15 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"
     type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500;600&family=PT+Mono&family=Roboto+Mono:wght@400;500;600&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
 
   <style>
     body {
-      font-family: 'vcr_osd_monoregular', monospace;
+      font-family: "IBM Plex Mono", monospace;
       font-size: 13px;
       color: #AFAFAF;
       background: rgb(0, 0, 0, 0.5) url("IMAGES/background.png") no-repeat fixed;
@@ -25,6 +30,30 @@
         url(FONT/vcr_osd_mono_1.001-webfont.woff) format('woff');
       font-weight: normal;
       font-style: normal;
+    }
+
+    .bodyfont-ibmplex {
+      font-family: "IBM Plex Mono";
+    }
+
+    .bodyfont-roboto {
+      font-family: "Roboto Mono";
+    }
+
+    .bodyfont-courier {
+      font-family: "Courier Prime";
+    }
+
+    .bodyfont-pt {
+      font-family: "PT Mono";
+    }
+
+    .bodyfont-sharetech {
+      font-family: "Share Tech Mono";
+    }
+
+    .bodyfont-vcr {
+      font-family: "vcr_osd_monoregular";
     }
 
     .form-control {
@@ -69,7 +98,8 @@
 
 <body>
   <div id="preview">
-    <iframe src="top-right.html?player=player name&callsign=call&agency=unknown agency&tz=America%2FNew_York"></iframe>
+    <iframe
+      src="top-right.html?player=ofc%20x%20player&callsign=call&agency=LOS%20SANTOS%20POLICE%20DEPT&tz=America%2FNew_York"></iframe>
   </div>
   <div class="container">
     <div class="panel panel-default" id="config">
@@ -79,25 +109,39 @@
       <div class="panel-body">
         <form class="form-horizontal">
           <div class="form-group">
-            <div><label for="player" class="col-sm-2 control-label">player: </label></div>
+            <div><label for="player" class="col-sm-2 control-label">Name: </label></div>
             <div class="col-sm-8">
-              <input class="form-control change-track" type="text" name="player" id="player" placeholder="player name"
-                maxlength="20" />
+              <input class="form-control change-track" type="text" name="player" id="player" placeholder="OFC X PLAYER"
+                maxlength="20" value="OFC X PLAYER" />
             </div>
           </div>
           <div class="form-group">
             <div><label for="player" class="col-sm-2 control-label">callsign: </label></div>
             <div class="col-sm-8">
-              <input class="form-control change-track" type="text" name="callsign" id="callsign" placeholder="callsign"
-                maxlength="4" />
+              <input class="form-control change-track" type="text" name="callsign" id="callsign" placeholder="call"
+                maxlength="4" value="7A1" />
             </div>
           </div>
           <div class="form-group">
             <div><label for="player" class="col-sm-2 control-label">agency: </label></div>
             <div class="col-sm-8">
               <select class="form-control change-track" name="agency" id="agency">
-                <option>LOS SANTOS POLICE DEPT</option>
+                <option selected>LOS SANTOS POLICE DEPT</option>
                 <option>LOS SANTOS FIRE RESCUE</option>
+              </select>
+            </div>
+          </div>
+          <div style="height: 2em"></div>
+          <div class="form-group">
+            <div><label for="font" class="col-sm-2 control-label">font: </label></div>
+            <div class="col-sm-8">
+              <select class="form-control change-track" name="font" id="font">
+                <option selected>ibmplex</option>
+                <option>roboto</option>
+                <option>sharetech</option>
+                <option>courier</option>
+                <option>pt</option>
+                <option>vcr</option>
               </select>
             </div>
           </div>
@@ -106,7 +150,7 @@
           <div class="form-group">
             <div><label for="url" class="col-sm-2 control-label">url (click me): </label></div>
             <div class="col-sm-8"><input class="form-control" type="text" name="url" id="url" readonly="true"
-                value="https://axon.dotroleplay.com/top-right.html?player=player&callsign=call&agency=agency&tz=America%2FNew_York">
+                value="https://axon.dotroleplay.com/top-right.html?player=ofc%20x%20player&callsign=call&agency=LOS%20SANTOS%20POLICE%20DEPT&tz=America%2FNew_York">
             </div>
             <div class="col-sm-2"></div><span class="label label-info" style="display: none;" id="copied">Copied!</span>
           </div>
@@ -118,6 +162,19 @@
         <h1 class="panel-title">How To Use</h1>
       </div>
       <div class="panel-body">
+        <ol>
+          <li>Enter your character rank (abbreviation) and name. EG: Officer Xavier Player: OFC X PLAYER. Flexible to
+            fit.</li>
+          <li>Enter your 3-4 letter <a
+              href="https://en.wikipedia.org/wiki/Los_Angeles_Police_Department_resources#Unit_callsigns">callsign
+              abbreviation</a> (station, letter, car number). EG: 7A1</li>
+          <li>Select the Los Santos Agency</li>
+          <li>Choose a font of your liking</li>
+          <li>Verify you like the look as you update</li>
+          <li>Click the URL to copy to your clipboard</li>
+          <li>In OBS: Add a browser source (1920x1080) and paste the URL</li>
+          <li>Fit the browser source to your display</li>
+        </ol>
       </div>
     </div>
   </div>
@@ -134,22 +191,29 @@
     setTimeout(function () {
       $("#copied").fadeOut("slow");
     }, 5000);
-  })
+  });
+  // $("#font").change(function() {
+  //   $('body').attr('class', '')
+  //   $('body').addClass('bodyfont-'+$('#font').val());
+  // })
 
   function updateUrl() {
     const values = {
       player: $("#player").val(),
       callsign: $("#callsign").val(),
       agency: $("#agency").val(),
+      font: $("#font").val(),
       tz: "America/New_York" //default
     };
 
     const url = "https://axon.dotroleplay.com/top-right.html?" + $.param(values);
     $("#url").val(url);
     //update iframe
-    $("#preview>iframe").attr('src', url);
+    $("#preview>iframe").attr('src', "top-right.html?" + $.param(values));
     return;
   }
+
+  $().ready(updateUrl);
 </script>
 
 </html>
